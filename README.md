@@ -19,16 +19,18 @@ Or install it yourself as:
     $ gem install pg_drive
 
 You need to (https://console.developers.google.com)[create] a new project and credential in order to use google drive. Make sure the credential is for "Oauth Client" and the application type is "Other".
-Set the following environment variables 
+Set the following environment variables:
+```
 ENV['PG_DRIVE_GOOGLE_KEY']="Your credential client id"
 ENV['PG_DRIVE_GOOGLE_SECRET']="Your credential secret"
+```
 These values should be easy to find after you created new credentials.
 
-After that you should run 
+After that you should run the following command inside rails console and follow the instructions.
 ```ruby
 PgDrive.setup_credentials
 ```
-inside rails console and follow the instructions. This process is generating a new token so the app could use a specific user's google drive account to store the backup files.
+This process is will generate a new token so the app could use a specific user's google drive account to store the backup files.
 
 ## Usage
 

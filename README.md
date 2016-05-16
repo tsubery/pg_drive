@@ -1,6 +1,6 @@
 # PgDrive
 
-This gem is a minimalist backups solution for Postgres, Rails and Goodle Drive.
+This library is intended to be a minimalist backup solution for Postgres, Rails and Goodle Drive.
 
 ## Installation
 
@@ -37,6 +37,9 @@ PgDrive.perform
 ```
 Creates a new backup and uploads it to google drive.
 You can run this command in your favorite queueing system and favorite scheduler.
+
+## Notes
+Keep in mind the backup dump and zipping are all done in memory. If your database is more than 50mb you should find a better solution.
 
 ## Contributing
 

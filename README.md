@@ -1,8 +1,6 @@
 # PgDrive
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pg_drive`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem is a minimalist backups solution for Postgres, Rails and Goodle Drive.
 
 ## Installation
 
@@ -20,19 +18,29 @@ Or install it yourself as:
 
     $ gem install pg_drive
 
+You need to (https://console.developers.google.com)[create] a new project and credential in order to use google drive. Make sure the credential is for "Oauth Client" and the application type is "Other".
+Set the following environment variables 
+ENV['PG_DRIVE_GOOGLE_KEY']="Your credential client id"
+ENV['PG_DRIVE_GOOGLE_SECRET']="Your credential secret"
+These values should be easy to find after you created new credentials.
+
+After that you should run 
+```ruby
+PgDrive.setup_credentials
+```
+inside rails console and follow the instructions. This process is generating a new token so the app could use a specific user's google drive account to store the backup files.
+
 ## Usage
 
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+PgDrive.perform
+```
+Creates a new backup and uploads it to google drive.
+You can run this command in your favorite queueing system and favorite scheduler.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pg_drive.
+Bug reports and pull requests are welcome on GitHub at https://github.com/tsubery/pg_drive.
 
 
 ## License

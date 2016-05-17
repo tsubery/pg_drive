@@ -1,4 +1,5 @@
 require "pg_drive/version"
+require 'open3'
 require "google/apis/drive_v2"
 require "googleauth"
 require "pg_drive/uploader"

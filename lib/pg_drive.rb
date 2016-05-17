@@ -54,7 +54,7 @@ module PgDrive
         user_id: :owner,
         code: code,
         base_url: OOB_URI
-      )
+      ).refresh_token
     end
   end
 end

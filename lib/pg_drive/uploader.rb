@@ -8,8 +8,9 @@ module PgDrive
       def call(content)
         drive = Drive::DriveService.new
         drive.authorization = credentials
+        app_name = Rails.application.class.parent_name
         drive.insert_file(
-          Drive::File.new(title: "backup-#{Time.now.to_i}"),
+          Drive::File.new(title: "backup-#{app_name}-#{Time.now.to_i}"),
           upload_source: gzip(content),
           content_type: GZIP_MIME_TYPE,
           options: { retries: RETRY_COUNT }

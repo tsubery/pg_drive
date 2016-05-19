@@ -1,6 +1,6 @@
 # PgDrive
 
-This library is intended to be a minimalist backup solution for Postgres, Rails and Goodle Drive.
+This library is intended to be a minimalist backup solution for Postgres, Rails and Goodle Drive. Basically a free aletrnative to [dumper](https://dumper.io).
 
 ## Installation
 
@@ -18,13 +18,13 @@ Or install it yourself as:
 
     $ gem install pg_drive
 
-You need to (https://console.developers.google.com)[create] a new project and credential in order to use google drive. Make sure the credential is for "Oauth Client" and the application type is "Other".
+You need to [create](https://console.developers.google.com) a new project and credential in order to use google drive. Make sure the credential is for "Oauth Client" and the application type is "Other".
 Set the following environment variables:
 ```
 ENV['PG_DRIVE_GOOGLE_KEY']="Your credential client id"
 ENV['PG_DRIVE_GOOGLE_SECRET']="Your credential secret"
 ```
-These values should be easy to find after you created new credentials.
+These values should be easy to find after you created new credentials in google's developer console.
 
 After that you should run the following command inside rails console and follow the instructions.
 ```ruby

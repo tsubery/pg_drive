@@ -10,19 +10,11 @@ module PgDrive
         drive.authorization = credentials
         app_name = Rails.application.class.parent_name
         drive.insert_file(
-          Drive::File.new(title: "backup-#{app_name}-#{Time.now.utc.iso8601}"),
-          upload_source: gzip(content),
-          content_type: GZIP_MIME_TYPE,
+          Drive::File.new(title: "#{app_name}-#{Time.now.utc.iso8601}.dmp"),
+          upload_source: StringIO.new(content),
+          content_type: BINARY_MIME_TYPE,
           options: { retries: RETRY_COUNT }
         )
-      end
-
-      def gzip(string)
-        gzipped_io = StringIO.new
-        writer = Zlib::GzipWriter.new(gzipped_io)
-        writer.write(string)
-        writer.close
-        StringIO.new(gzipped_io.string)
       end
 
       def client_id

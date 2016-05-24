@@ -1,5 +1,5 @@
 require "pg_drive/version"
-require 'open3'
+require "open3"
 require "google/apis/drive_v2"
 require "googleauth"
 require "pg_drive/uploader"
@@ -18,7 +18,7 @@ module PgDrive
   CREDENTIALS_ENV_INSTRUCTIONS = "Please set the following line as the value of "\
   '"PG_DRIVE_CREDENTIALS" key in the environment hash:'.freeze
 
-  BACKUP_CMD = "pg_dump -c -C -b".freeze
+  BACKUP_CMD = "pg_dump -Fc -c -C -b".freeze
   PG_ENV_MAP = {
     "PGPASSWORD" => "password",
     "PGDATABASE" => "database",
@@ -26,7 +26,7 @@ module PgDrive
     "PGPORT" => "port",
     "PGUSER" => "username",
   }.freeze
-  GZIP_MIME_TYPE = "application/x-gzip".freeze
+  BINARY_MIME_TYPE = "application/octet-stream".freeze
 
   class << self
     def perform

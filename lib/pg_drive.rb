@@ -30,28 +30,22 @@ module PgDrive
 
   class << self
     def perform
-      Uploader.call(Dump.call)
+      Dump.call do |pipe|
+        Uploader.call(pipe)
+      end
     end
 
     def setup_credentials
       puts CREDENTIALS_INTRO
-      puts authorizer.get_authorization_url(base_url: OOB_URI)
+      puts Uploader.authorizer.get_authorization_url(base_url: OOB_URI)
       puts "Please enter the token you receive for further instructions"
       code = gets
       puts CREDENTIALS_ENV_INSTRUCTIONS
       puts refresh_token_from_code(code)
     end
 
-    def authorizer
-      Google::Auth::UserAuthorizer.new(
-        Uploader.client_id,
-        Uploader::AUTH_SCOPE,
-        nil
-      )
-    end
-
     def refresh_token_from_code(code)
-      authorizer.get_credentials_from_code(
+      Uploader.authorizer.get_credentials_from_code(
         user_id: :owner,
         code: code,
         base_url: OOB_URI

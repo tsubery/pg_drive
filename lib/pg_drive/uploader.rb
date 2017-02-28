@@ -5,15 +5,23 @@ module PgDrive
     RETRY_COUNT = 3
 
     class << self
-      def call(content)
+      def call(pipe)
         drive = Drive::DriveService.new
         drive.authorization = credentials
         app_name = Rails.application.class.parent_name
         drive.insert_file(
           Drive::File.new(title: "#{app_name}-#{Time.now.utc.iso8601}.dmp"),
-          upload_source: StringIO.new(content),
+          upload_source: pipe,
           content_type: BINARY_MIME_TYPE,
           options: { retries: RETRY_COUNT }
+        )
+      end
+
+      def authorizer
+        Google::Auth::UserAuthorizer.new(
+          Uploader.client_id,
+          Uploader::AUTH_SCOPE,
+          nil
         )
       end
 

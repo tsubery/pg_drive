@@ -13,10 +13,10 @@ module PgDrive
   DEFAULT_BACKUP_TIMEOUT_SECONDS = 60 * 5 # 5 minutes
   MISSING_CRED_WARNING = "Please use the run #{self}.setup_credentials"\
     " from console to set up credentials".freeze
-  CREDENTIALS_INTRO = "Please open your browser and go to the following url."\
+  CREDENTIALS_INTRO = "Please open your browser and go to the following url:"\
     "Login with the user you wish to use as target for backup".freeze
   CREDENTIALS_ENV_INSTRUCTIONS = "Please set the following line as the value of "\
-  '"PG_DRIVE_CREDENTIALS" key in the environment hash:'.freeze
+  '"PG_DRIVE_CREDENTIALS" key the environment:'.freeze
 
   BACKUP_CMD = "pg_dump -Fc -c -C -b".freeze
   PG_ENV_MAP = {

@@ -12,8 +12,9 @@ module PgDrive
         tmpfile.write(stdout)
         tmpfile.rewind
 
+        success = wait_thr.value.success?
         errors = stderr.read
-        unless wait_thr.value.success? && errors.empty?
+        unless success && errors.empty?
           raise BackupFailed, "Exit status: #{wait_thr.value.exitstatus}: #{errors}"
         end
 
